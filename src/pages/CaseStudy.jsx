@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Avatar3D } from '../components/Avatar3D'
-import { Txt, Icon, ICONS } from '../components/Header'
+import { Txt, Icon, ICONS, BrowserBar, frameLabel } from '../components/Header'
 import { PROJECTS, contactLinks, projectName } from '../data'
 
 const GUIDE_LOOK = { x: 0.6, y: 0.15 }
@@ -43,19 +43,22 @@ export function CaseStudy({ id, t, lang }) {
           <div><dt>{c.kind}</dt><dd>{p.kind[lang]}</dd></div>
           <div><dt>{c.year}</dt><dd><Txt>{p.year}</Txt></dd></div>
         </dl>
-        <div className="row">
-          {p.demo
-            ? <a className="btn-primary" href={p.demo} target="_blank" rel="noreferrer">{t.demo}</a>
-            : <span className="btn-ghost is-disabled" aria-disabled="true">{t.demo.replace(' →', '')} · {c.soon}</span>}
-          {p.code
-            ? <a className="btn-ghost" href={p.code} target="_blank" rel="noreferrer"><Icon d={ICONS.code} />{t.code}</a>
-            : <span className="btn-ghost is-disabled" aria-disabled="true"><Icon d={ICONS.code} />{t.code} · {c.soon}</span>}
-        </div>
+        {/* Solo se muestra lo que existe o lo que va a existir (soon: { demo, code } en data.js) */}
+        {(p.demo || p.code || p.soon?.demo || p.soon?.code) && (
+          <div className="row">
+            {p.demo
+              ? <a className="btn-primary" href={p.demo} target="_blank" rel="noreferrer">{t.demo}</a>
+              : p.soon?.demo && <span className="btn-ghost is-disabled" aria-disabled="true">{t.demo.replace(' →', '')} · {c.soon}</span>}
+            {p.code
+              ? <a className="btn-ghost" href={p.code} target="_blank" rel="noreferrer"><Icon d={ICONS.code} />{t.code}</a>
+              : p.soon?.code && <span className="btn-ghost is-disabled" aria-disabled="true"><Icon d={ICONS.code} />{t.code} · {c.soon}</span>}
+          </div>
+        )}
       </section>
 
       {/* Captura principal */}
       <div className="wrap">
-        <Shot shot={p.shots[0]} lang={lang} hint={c.shotHint} big />
+        <Shot shot={p.shots[0]} lang={lang} hint={c.shotHint} bar={frameLabel(p, t)} big />
       </div>
 
       {/* Contenido + guía */}
@@ -72,7 +75,7 @@ export function CaseStudy({ id, t, lang }) {
           {p.shots.length > 1 && (
             <Block n="03" title={c.shots}>
               <div className="shots-grid">
-                {p.shots.slice(1).map((s) => <Shot key={s.file} shot={s} lang={lang} hint={c.shotHint} />)}
+                {p.shots.slice(1).map((s) => <Shot key={s.file} shot={s} lang={lang} hint={c.shotHint} bar={frameLabel(p, t)} />)}
               </div>
             </Block>
           )}
@@ -123,14 +126,17 @@ function Block({ n, title, warm, children }) {
   )
 }
 
-function Shot({ shot, lang, hint, big }) {
+function Shot({ shot, lang, hint, bar, big }) {
   if (!shot) return null
   return (
     <figure className={`case-shot${big ? ' big' : ''}`}>
-      <div className="shot">
-        {shot.src
-          ? <img src={shot.src} alt={shot.caption[lang]} loading={big ? 'eager' : 'lazy'} />
-          : <span>{hint}{shot.file}</span>}
+      <div className="case-frame">
+        <BrowserBar label={bar} />
+        <div className="shot">
+          {shot.src
+            ? <img src={shot.src} alt={shot.caption[lang]} loading={big ? 'eager' : 'lazy'} />
+            : <span>{hint}{shot.file}</span>}
+        </div>
       </div>
       <figcaption>{shot.caption[lang]}</figcaption>
     </figure>

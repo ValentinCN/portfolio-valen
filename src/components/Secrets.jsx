@@ -128,10 +128,13 @@ export function Secrets({ t }) {
           ref={btnRef}
           className={`secrets-pill${n === total ? ' done' : ''}`}
           aria-expanded={open}
+          aria-label={s.counter(n, total)}
           onClick={() => setOpen((o) => !o)}
         >
           <span aria-hidden="true">{n === total ? '🏆' : '🔍'}</span>
-          <span>{s.counter(n, total)}</span>
+          {/* En el celular se ve la versión corta (0/6) para no tapar el contenido */}
+          <span className="secrets-long" aria-hidden="true">{s.counter(n, total)}</span>
+          <span className="secrets-short" aria-hidden="true">{n}/{total}</span>
         </button>
       </div>
 

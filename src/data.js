@@ -71,6 +71,7 @@ export const PROJECTS = [
     image: '/projects/vindra-1.jpg',
     demo: '',
     code: '',
+    soon: { demo: true }, // va a tener demo cuando se publique
     year: '2026',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'shadcn/ui'],
     desc: {
@@ -107,7 +108,7 @@ export const PROJECTS = [
   {
     id: 'name',
     name: { es: 'Tienda de polvo de ñame', en: 'Yam powder online store' },
-    image: '',
+    image: '/projects/name-1.jpg',
     demo: '',
     code: '',
     year: '2026',
@@ -139,8 +140,8 @@ export const PROJECTS = [
       en: 'I show it as an example of how I design and set up a Tiendanube store.',
     },
     shots: [
-      { src: '', file: 'name-1.jpg', caption: { es: 'Portada de la tienda', en: 'Store home' } },
-      { src: '', file: 'name-2.jpg', caption: { es: 'Producto', en: 'Product page' } },
+      { src: '/projects/name-1.jpg', file: 'name-1.jpg', caption: { es: 'Maqueta de la portada (fotos de muestra hechas con IA)', en: 'Home page mockup (sample photos made with AI)' } },
+      { src: '/projects/name-2.jpg', file: 'name-2.jpg', caption: { es: 'Maqueta: presentaciones y precios de ejemplo', en: 'Mockup: sample sizes and prices' } },
     ],
   },
 ]
@@ -219,6 +220,8 @@ export const T = {
     demo: 'Ver demo →',
     code: 'Código',
     shot: 'CAPTURA',
+    frameDev: 'en desarrollo',
+    frameMock: 'maqueta',
     skillsLabel: '04 · La pizarra',
     aboutLabel: 'El cuadro',
     aboutTitle: 'Sobre mí',
@@ -329,6 +332,8 @@ export const T = {
     demo: 'Live demo →',
     code: 'Code',
     shot: 'SCREENSHOT',
+    frameDev: 'in progress',
+    frameMock: 'mockup',
     skillsLabel: '04 · The whiteboard',
     aboutLabel: 'The frame',
     aboutTitle: 'About me',

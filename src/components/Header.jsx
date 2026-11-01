@@ -29,6 +29,24 @@ export function Txt({ children }) {
   )
 }
 
+// Barra de navegador sobre las capturas: tres puntos y la dirección (o el estado del proyecto)
+export function BrowserBar({ label }) {
+  return (
+    <div className="browser-bar" aria-hidden="true">
+      <i /><i /><i />
+      <span>{label}</span>
+    </div>
+  )
+}
+
+// Qué dice la barra: el dominio de la demo, o "en desarrollo" / "maqueta"
+export function frameLabel(p, t) {
+  if (p.demo) {
+    try { return new URL(p.demo).host } catch { return p.demo }
+  }
+  return p.soon?.demo ? t.frameDev : t.frameMock
+}
+
 export function Icon({ d }) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

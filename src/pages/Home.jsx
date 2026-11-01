@@ -4,7 +4,7 @@ import { discover } from '../secrets'
 import { DeskScene } from '../components/DeskScene'
 import { Chat } from '../components/Chat'
 import { PROJECTS, SKILLS, contactLinks, projectName } from '../data'
-import { Txt, Icon, ICONS } from '../components/Header'
+import { Txt, Icon, ICONS, BrowserBar, frameLabel } from '../components/Header'
 
 const GUIDE_LOOK = { x: 0.9, y: 0.1 }
 const pick = (v, lang) => (typeof v === 'string' ? v : v[lang])
@@ -69,7 +69,7 @@ export function Home({ t, lang }) {
             <a href="#escritorio" className="btn-primary">{t.heroCta1}</a>
             <a href="#contacto" className="btn-ghost">{t.heroCta2}</a>
           </div>
-          <div className="note">{t.heroNote}</div>
+          <div className="hero-note">{t.heroNote}</div>
         </div>
         <div className="hero-stage">
           <div className="halo" aria-hidden="true" />
@@ -135,6 +135,7 @@ export function Home({ t, lang }) {
                 onMouseLeave={() => setHovered(null)}
                 onFocus={() => setHovered(p.id)}
               >
+                <BrowserBar label={frameLabel(p, t)} />
                 <div className="shot">
                   {p.image ? <img src={p.image} alt={projectName(p, lang)} loading="lazy" /> : <span>[{t.shot} · {projectName(p, lang)}]</span>}
                 </div>
@@ -143,8 +144,8 @@ export function Home({ t, lang }) {
                   <p><Txt>{p.desc[lang]}</Txt></p>
                   <div className="tags">{p.tags.map((tag) => <span key={tag}><Txt>{tag}</Txt></span>)}</div>
                   <div className="card-links">
-                    <a href={`/proyectos/${p.id}`} className="case">{t.seeCase}</a>
-                    {p.demo && <a href={p.demo} target="_blank" rel="noreferrer">{t.demo}</a>}
+                    <a href={`/proyectos/${p.id}`} className="case-link">{t.seeCase}</a>
+                    {p.demo && <a href={p.demo} className="dim" target="_blank" rel="noreferrer">{t.demo}</a>}
                     {p.code && <a href={p.code} className="dim" target="_blank" rel="noreferrer">{t.code}</a>}
                   </div>
                 </div>

@@ -42,7 +42,7 @@ export function Chat({ t, lang, onAnswer }) {
         <div className="chat-dot" aria-hidden="true">V</div>
         <div className="chat-who">
           <div className="chat-name">{t.chatName}</div>
-          <div className="chat-status"><span className="online" aria-hidden="true" />{t.chatStatus}</div>
+          <div className="chat-status"><span className="online" aria-hidden="true" /><span className="status-text">{t.chatStatus}</span></div>
         </div>
         <button type="button" className="btn-ghost small" onClick={reset}>{t.reset}</button>
       </div>
