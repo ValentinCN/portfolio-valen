@@ -156,8 +156,8 @@ button.character-view:focus-visible { outline-offset: -4px; }
 .desk-stage { position: relative; }
 .desk-svg { width: 100%; height: auto; display: block; }
 .desk-links { display: none; }
-.desk-avatar { position: absolute; left: 36%; top: 32%; width: 18%; height: 42%; }
-.desk-bubble { left: 52%; top: 60%; max-width: 24%; font-size: 14px; border-radius: 4px 14px 14px 14px; }
+.desk-avatar { position: absolute; left: 32.5%; top: 34.5%; width: 20%; height: 48%; }
+.desk-bubble { left: 55%; top: 70%; max-width: 24%; font-size: 14px; border-radius: 4px 14px 14px 14px; }
 .hotspot {
   position: absolute; z-index: 6; transform: translate(-50%, -100%);
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px;
@@ -429,7 +429,21 @@ mark.todo { background: rgba(242, 182, 97, 0.16); color: var(--warm); border-rad
 .avatar3d .avatar3d-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 16px; }
 
 /* ── 02 Escritorio inmersivo ── */
-.desk-viewport { position: relative; overflow: hidden; aspect-ratio: 900 / 640; border-radius: 24px; }
+.desk-viewport { position: relative; overflow: hidden; aspect-ratio: 1024 / 680; border-radius: 24px; background: var(--bg-2); }
+/* El cuarto es una imagen con el mismo fondo que la sección (#11151d), así no se ve el recuadro */
+.desk-art { position: absolute; inset: 0; }
+.desk-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; user-select: none; pointer-events: none;
+}
+.desk-hits { position: absolute; inset: 0; }
+.desk-hits .hit { fill: transparent; stroke: transparent; stroke-width: 3; stroke-linejoin: round; transition: fill 0.2s, stroke 0.2s; }
+.desk-hits .hit.pickable { cursor: zoom-in; }
+.desk-hits .hit.on, .desk-hits .hit.pickable:hover { fill: rgba(124, 196, 255, 0.1); stroke: var(--accent); }
+.desk-hits .hit.warm.on, .desk-hits .hit.warm.pickable:hover { fill: rgba(242, 182, 97, 0.14); stroke: var(--warm); }
+.desk-svg .note-glow { fill: var(--warm); opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity 0.2s; }
+.desk-svg .secret-obj:hover .note-glow { opacity: 0.18; }
+.desk-svg .secret-obj.is-active .note-glow { animation: note-glow 0.9s ease-out; }
+@keyframes note-glow { from { opacity: 0.6; transform: scale(0.6); } to { opacity: 0; transform: scale(1.9); } }
 .desk-viewport .desk-stage {
   position: absolute; inset: 0; transform-origin: 0 0;
   transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.1, 1), filter 0.5s ease;
@@ -648,4 +662,5 @@ html.is-loading { overflow: hidden; }
 .secrets-link { margin-top: 4px; font-size: 13px; font-weight: 600; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .desk-svg .music-note, .desk-svg .secret-obj.is-active .music-note { animation: none; }
+  .desk-svg .secret-obj.is-active .note-glow { animation: none; opacity: 0.3; }
 }

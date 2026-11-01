@@ -181,7 +181,7 @@ export const T = {
       listen: 'Escuchar mi música →',
       items: {
         planta: { name: 'La planta', hint: 'Algo en el escritorio necesita agua.', msg: '🌱 ¡La regaste! Crece como un buen proyecto: de a poco y con cuidado.' },
-        taza: { name: 'La taza', hint: 'Ningún dev arranca el día sin su bebida.', msg: '☕ Café cargado. (Bueno, a veces es mate.)' },
+        taza: { name: 'El mate', hint: 'Ningún dev arranca el día sin su bebida.', msg: '🧉 Mate cebado. Ahora sí, a programar.' },
         konami: { name: 'Código Konami', hint: 'Un clásico de los videojuegos: ↑ ↑ ↓ ↓ ← → ← → B A. En el celu, deslizá el dedo en ese orden.', msg: '🎮 ¡Código Konami! Sos de los míos.' },
         avatar: { name: 'Cinco saludos', hint: 'Al personaje de la portada le gusta saludar… mucho.', msg: '👋 ¡Cinco saludos seguidos! Ya somos amigos.' },
         idioma: { name: 'Bilingüe', hint: 'Probá ver la página en el otro idioma.', msg: '🌎 ¡Bilingüe! Trabajo en español y en inglés.' },
@@ -293,7 +293,7 @@ export const T = {
       listen: 'Listen to my music →',
       items: {
         planta: { name: 'The plant', hint: 'Something on the desk needs water.', msg: '🌱 You watered it! It grows like a good project: slowly and with care.' },
-        taza: { name: 'The mug', hint: 'No dev starts the day without their drink.', msg: '☕ Coffee loaded. (Well, sometimes it’s mate.)' },
+        taza: { name: 'The mate', hint: 'No dev starts the day without their drink.', msg: '🧉 Mate ready. Now we can code.' },
         konami: { name: 'Konami code', hint: 'A video game classic: ↑ ↑ ↓ ↓ ← → ← → B A. On a phone, swipe in that order.', msg: '🎮 Konami code! You’re one of us.' },
         avatar: { name: 'Five waves', hint: 'The character at the top loves to wave… a lot.', msg: '👋 Five waves in a row! We’re friends now.' },
         idioma: { name: 'Bilingual', hint: 'Try the page in the other language.', msg: '🌎 Bilingual! I work in Spanish and English.' },
