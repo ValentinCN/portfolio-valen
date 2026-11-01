@@ -178,14 +178,14 @@ button.character-view:focus-visible { outline-offset: -4px; }
 }
 
 /* ── 03 Proyectos ── */
-.projects-row { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+.projects-row { display: flex; flex-direction: column; gap: 20px; }
 .guide {
-  flex: 1 1 260px; max-width: 320px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;
-  padding: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+  position: relative; display: flex; flex-direction: row; align-items: flex-end; gap: 16px; max-width: 640px;
 }
-.guide-bubble { position: relative; align-self: stretch; min-height: 96px; border-radius: 18px 18px 4px 18px; box-shadow: none; }
-.guide-avatar { width: 100%; height: 250px; }
-.projects-grid { flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
+.guide-bubble { position: relative; align-self: center; min-height: 0; border-radius: 18px 18px 18px 4px; box-shadow: none; }
+.guide-avatar { flex: 0 0 120px; width: 120px; height: 140px; order: -1; }
+.guide .mono-label { display: none; }
+.projects-grid { min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 24px; }
 .card {
   display: flex; flex-direction: column; overflow: hidden; background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); transition: transform 0.2s ease, border-color 0.2s ease;
@@ -231,12 +231,15 @@ button.character-view:focus-visible { outline-offset: -4px; }
 .facts div { padding: 14px; border-radius: 12px; background: var(--card-2); border: 1px solid #2a3240; display: flex; flex-direction: column; gap: 4px; }
 .facts span { font-family: var(--mono); font-size: 11px; color: var(--muted-2); }
 .facts strong { font-size: 15px; font-weight: 600; }
+/* Skills y Sobre mí: sin tarjeta, el corcho y el cuadro son el contenedor */
+.panel.panel-plain { background: none; border: 0; padding: 0; }
+.board.board-section { box-shadow: inset 0 0 0 2px #5a4030, 0 16px 32px rgba(0, 0, 0, 0.35); }
+.board-section .board-notes { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.frame.frame-section { margin: 0; box-shadow: inset 0 0 0 3px #8a6650, 0 16px 32px rgba(0, 0, 0, 0.35); }
+.frame-section .frame-inner { gap: 18px; }
 
 /* ── 05 Chat ── */
 .chat-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 32px; }
-.chat-stage { flex: 1 1 380px; min-width: 0; position: relative; min-height: 420px; }
-.chat-stage .halo { top: 45%; width: 340px; height: 340px; }
-.chat-avatar { position: absolute; inset: 20px 0 10px 0; }
 .chat {
   flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; background: #131821;
   border: 1px solid var(--line); border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
@@ -251,6 +254,10 @@ button.character-view:focus-visible { outline-offset: -4px; }
   background: radial-gradient(circle at 35% 30%, #a9dcff, #2d6fb0); color: var(--bg); font-weight: 700;
 }
 .chat-dot.sm { flex-basis: 32px; width: 32px; height: 32px; font-size: 13px; }
+.chat-dot.face { overflow: hidden; background: radial-gradient(circle at 35% 30%, #a9dcff, #2d6fb0); }
+.chat-dot.face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.chat-dot.talking { animation: talk-ring 1.2s ease-out infinite; }
+@keyframes talk-ring { from { box-shadow: 0 0 0 0 rgba(124, 196, 255, 0.6); } to { box-shadow: 0 0 0 10px rgba(124, 196, 255, 0); } }
 .chat-list { height: 300px; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
 .msg-bot { display: flex; align-items: flex-end; gap: 10px; max-width: 88%; }
 .bot-bubble {
@@ -279,8 +286,10 @@ button.character-view:focus-visible { outline-offset: -4px; }
 }
 .chip:hover { border-color: var(--accent); }
 .chip.asked { opacity: 0.55; }
-.direct { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
-.direct .muted { margin-right: 8px; }
+/* Contacto directo: columna al lado del chat en la compu, debajo en el celular */
+.direct { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.direct .muted { margin: 0 0 4px; }
+.direct a { justify-content: center; }
 
 /* ── Footer ── */
 .footer {
@@ -302,18 +311,23 @@ button.character-view:focus-visible { outline-offset: -4px; }
   .hotspot { min-height: 28px; width: 28px; padding: 0; justify-content: center; font-size: 0; gap: 0; pointer-events: none; }
   .desk-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
   .desk-links a { justify-content: center; min-height: 48px; font-size: 15px; }
-  .guide { max-width: none; }
-  .chat-stage { min-height: 320px; }
+  .guide { display: none; }
+  .direct { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .direct .muted, .direct .btn-warm { grid-column: 1 / -1; }
+  .direct .muted { text-align: center; }
   .chat-list { height: 260px; }
   .chat-head { padding: 16px; gap: 12px; }
   .chat-status { font-size: 11px; min-width: 0; }
   .status-text { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .panel { padding: 24px; }
+  .panel.panel-plain { padding: 0; }
+  .board-section .board-notes { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .board.board-section { padding: 16px 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .chip-float, .pulse { animation: none; }
+  .chip-float, .pulse, .chat-dot.talking { animation: none; }
 }
 
 /* ── Pendientes [entre corchetes] ── */
@@ -496,10 +510,12 @@ button.hotspot { font-family: inherit; cursor: pointer; }
 .screen-all { display: block; padding: 6px 22px 18px; font-family: var(--mono); font-size: 13px; text-decoration: none; }
 
 /* pizarra */
-.board { background: #e9eef5; border: 10px solid #5a6478; border-radius: 14px; padding: 22px; color: #0d1017; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45); }
+/* Corcho como el de la imagen del escritorio */
+.board { background: #e8dcc4; border: 10px solid #8a6650; border-radius: 14px; padding: 22px; color: #0d1017; box-shadow: inset 0 0 0 2px #5a4030, 0 30px 60px rgba(0, 0, 0, 0.45); }
 .board-title { font-size: 22px; font-weight: 700; color: #1a2130; margin-bottom: 18px; }
 .board-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 18px; }
-.note { background: var(--note); color: #0d1017; padding: 14px 16px 18px; border-radius: 3px; transform: rotate(var(--tilt)); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18); }
+.note { position: relative; background: var(--note); color: #0d1017; padding: 18px 16px 18px; border-radius: 3px; transform: rotate(var(--tilt)); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18); }
+.note::before { content: ''; position: absolute; top: 6px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #5a4030; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35); }
 .note-title { font-size: 15px; font-weight: 700; }
 .note ul { margin: 8px 0 0; padding-left: 18px; font-size: 15px; line-height: 1.6; }
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Avatar3D } from '../components/Avatar3D'
 import { discover } from '../secrets'
-import { DeskScene } from '../components/DeskScene'
+import { DeskScene, SkillNotes } from '../components/DeskScene'
 import { Chat } from '../components/Chat'
 import { PROJECTS, SKILLS, contactLinks, projectName } from '../data'
 import { Txt, Icon, ICONS, BrowserBar, frameLabel } from '../components/Header'
@@ -45,15 +45,6 @@ export function Home({ t, lang }) {
   const [deskWave] = useWaveOnView(deskRef)
   const [deskActive, setDeskActive] = useState(null)
   const [hovered, setHovered] = useState(null)
-  const [chatWave, setChatWave] = useState(0)
-  const [chatTalking, setChatTalking] = useState(false)
-  const talkTimer = useRef(null)
-  const onAnswer = () => {
-    setChatWave((n) => n + 1)
-    setChatTalking(true)
-    clearTimeout(talkTimer.current)
-    talkTimer.current = setTimeout(() => setChatTalking(false), 4200)
-  }
 
   const guideProject = PROJECTS.find((p) => p.id === hovered)
 
@@ -83,9 +74,10 @@ export function Home({ t, lang }) {
             label={lang === 'es' ? 'Avatar de Valentín. Tocalo para que salude.' : 'Valentín’s avatar. Click to wave.'}
           />
           <div className="bubble hero-bubble">{t.heroBubble}</div>
+          {/* Lo que usé en los proyectos que muestro: React (El Sello), Next.js (Vindra), Supabase (El Sello) */}
           <div className="chip-float f1" aria-hidden="true">React</div>
-          <div className="chip-float f2" aria-hidden="true">Node.js</div>
-          <div className="chip-float f3" aria-hidden="true">MongoDB</div>
+          <div className="chip-float f2" aria-hidden="true">Next.js</div>
+          <div className="chip-float f3" aria-hidden="true">Supabase</div>
         </div>
       </section>
 
@@ -113,6 +105,7 @@ export function Home({ t, lang }) {
           <p className="muted">{t.projSub}</p>
         </div>
         <div className="projects-row">
+          {/* Guía compacto: busto chico arriba de las tarjetas (en el celular no aparece) */}
           <aside className="guide">
             <div className="bubble guide-bubble" aria-live="polite">
               {guideProject ? guideProject.say[lang] : t.guideIdle}
@@ -158,25 +151,29 @@ export function Home({ t, lang }) {
       {/* 04 · SKILLS + SOBRE MÍ */}
       <section id="skills" className="band">
         <div className="wrap section two-col">
-          <div className="panel">
+          {/* La pizarra: las skills como post-its en el mismo corcho del escritorio */}
+          <div className="panel panel-plain">
             <div className="eyebrow">{t.skillsLabel}</div>
             <h2>Skills</h2>
-            {SKILLS.map((g) => (
-              <div className="skill-group" key={pick(g.group, 'es')}>
-                <span className="skill-title">{pick(g.group, lang)}</span>
-                <div className="tags big">{g.items.map((s) => <span key={s}>{s}</span>)}</div>
-              </div>
-            ))}
+            <div className="board board-section">
+              <SkillNotes lang={lang} />
+            </div>
           </div>
-          <div className="panel" id="sobre">
+          {/* El cuadro: "Sobre mí" enmarcado como el cuadro de la pared */}
+          <div className="panel panel-plain" id="sobre">
             <div className="eyebrow">{t.aboutLabel}</div>
             <h2>{t.aboutTitle}</h2>
-            <p className="about">{t.aboutText}</p>
-            <div className="facts">
-              {t.facts.map(([k, v]) => (
-                <div key={k}><span>{k}</span><strong>{v}</strong></div>
-              ))}
-            </div>
+            <figure className="frame frame-section">
+              <div className="frame-inner">
+                <p className="about">{t.aboutText}</p>
+                <div className="facts">
+                  {t.facts.map(([k, v]) => (
+                    <div key={k}><span>{k}</span><strong>{v}</strong></div>
+                  ))}
+                </div>
+              </div>
+              <figcaption className="frame-plate">{t.zoom.frameCaption}</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -190,32 +187,23 @@ export function Home({ t, lang }) {
           </div>
         </div>
         <div className="chat-row">
-          <div className="chat-stage">
-            <div className="halo" aria-hidden="true" />
-            <Avatar3D
-              className="chat-avatar"
-              framing="full"
-              waveSignal={chatWave}
-              mood={chatTalking ? 'talk' : 'smile'}
-              label={lang === 'es' ? 'Avatar de Valentín' : 'Valentín’s avatar'}
-            />
-          </div>
-          <Chat t={t} lang={lang} onAnswer={onAnswer} />
-        </div>
-        <div className="direct">
-          <span className="muted">{t.direct}</span>
-          <a className="btn-warm" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
-            <Icon d={ICONS.whatsapp} />WhatsApp
-          </a>
-          <a className="btn-ghost" href={contactLinks.email}>
-            <Icon d={ICONS.email} />Email
-          </a>
-          <a className="btn-ghost" href={contactLinks.github} target="_blank" rel="noreferrer">
-            <Icon d={ICONS.code} />GitHub
-          </a>
-          <a className="btn-ghost" href={contactLinks.linkedin} target="_blank" rel="noreferrer">
-            <Icon d={ICONS.user} />LinkedIn
-          </a>
+          <Chat t={t} lang={lang} />
+          {/* Contacto directo al lado del chat (abajo en el celular) */}
+          <aside className="direct">
+            <span className="muted">{t.direct}</span>
+            <a className="btn-warm" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
+              <Icon d={ICONS.whatsapp} />WhatsApp
+            </a>
+            <a className="btn-ghost" href={contactLinks.email}>
+              <Icon d={ICONS.email} />Email
+            </a>
+            <a className="btn-ghost" href={contactLinks.github} target="_blank" rel="noreferrer">
+              <Icon d={ICONS.code} />GitHub
+            </a>
+            <a className="btn-ghost" href={contactLinks.linkedin} target="_blank" rel="noreferrer">
+              <Icon d={ICONS.user} />LinkedIn
+            </a>
+          </aside>
         </div>
       </section>
     </main>

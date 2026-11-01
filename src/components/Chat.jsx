@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { QA, contactLinks } from '../data'
+import { Face } from './Header'
 
 // Chat guionado: el visitante elige una pregunta y "Valen" responde. No usa ninguna API.
 export function Chat({ t, lang, onAnswer }) {
@@ -39,7 +40,7 @@ export function Chat({ t, lang, onAnswer }) {
   return (
     <div className="chat">
       <div className="chat-head">
-        <div className="chat-dot" aria-hidden="true">V</div>
+        <Face talking={typing} />
         <div className="chat-who">
           <div className="chat-name">{t.chatName}</div>
           <div className="chat-status"><span className="online" aria-hidden="true" /><span className="status-text">{t.chatStatus}</span></div>
@@ -56,7 +57,7 @@ export function Chat({ t, lang, onAnswer }) {
         })}
         {typing && (
           <div className="msg-bot">
-            <div className="chat-dot sm" aria-hidden="true">V</div>
+            <Face small />
             <div className="bot-bubble typing">
               <span className="d1" /><span className="d2" /><span className="d3" />
               <span className="typing-label">{t.typing}</span>
@@ -83,7 +84,7 @@ function Bot({ text, cta, href }) {
   const external = href && href.startsWith('http')
   return (
     <div className="msg-bot">
-      <div className="chat-dot sm" aria-hidden="true">V</div>
+      <Face small />
       <div className="bot-bubble">
         <span>{text}</span>
         {cta && (

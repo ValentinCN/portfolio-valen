@@ -150,8 +150,8 @@ export const PROJECTS = [
 export const projectName = (p, lang) => (typeof p.name === 'string' ? p.name : p.name[lang])
 
 export const SKILLS = [
-  { group: 'Frontend', items: ['React', 'JavaScript', 'HTML', 'CSS'] },
-  { group: 'Backend', items: ['Node.js', 'Express', 'MongoDB'] },
+  { group: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML / CSS'] },
+  { group: 'Backend', items: ['Supabase', 'Node.js', 'Express', 'MongoDB'] },
   { group: { es: 'Otros', en: 'Other' }, items: ['Tiendanube', 'Git / GitHub', 'Scrum'] },
 ]
 
@@ -161,7 +161,7 @@ export const T = {
     nav: { desk: 'Escritorio', projects: 'Proyectos', skills: 'Skills', contact: 'Contacto', fast: 'Modo rápido →' },
     eyebrow: 'Full-stack developer · Quilmes, AR',
     heroTitle: 'Hago webs que venden y sistemas que ordenan.',
-    heroSub: 'Tiendas online, webs para comercios y herramientas a medida, con React, Node y MongoDB.',
+    heroSub: 'Tiendas online, webs para comercios y herramientas a medida, con React, Next.js y Supabase.',
     heroCta1: 'Pasá a mi escritorio',
     heroCta2: 'Preguntame algo',
     heroNote: 'Disponible para proyectos freelance · Español / English',
@@ -273,7 +273,7 @@ export const T = {
     nav: { desk: 'Desk', projects: 'Projects', skills: 'Skills', contact: 'Contact', fast: 'Quick view →' },
     eyebrow: 'Full-stack developer · Buenos Aires, AR',
     heroTitle: 'I build websites that sell and tools that keep business organized.',
-    heroSub: 'Online stores, websites for local businesses and custom tools, built with React, Node and MongoDB.',
+    heroSub: 'Online stores, websites for local businesses and custom tools, built with React, Next.js and Supabase.',
     heroCta1: 'Step into my desk',
     heroCta2: 'Ask me anything',
     heroNote: 'Available for freelance work · Spanish / English',
@@ -388,14 +388,14 @@ export const QA = {
   es: [
     { id: 'que', q: '¿Qué hacés?', a: 'Soy desarrollador full-stack, formado en Henry. Hago webs para comercios, tiendas online y herramientas a medida para ordenar el trabajo de todos los días.' },
     { id: 'ecom', q: 'Mostrame un e-commerce', a: 'Mirá El Sello: un catálogo web para una librería de Quilmes. El cliente arma su lista y la manda por WhatsApp, y el local carga los productos desde su propio panel. React y TypeScript adelante; Supabase atrás.', cta: 'Ver el caso El Sello', href: '/proyectos/sello' },
-    { id: 'stack', q: '¿Con qué tecnologías trabajás?', a: 'React y JavaScript en el frontend; Node.js, Express y MongoDB en el backend. Si el cliente quiere administrar su tienda por su cuenta, también trabajo con Tiendanube.' },
+    { id: 'stack', q: '¿Con qué tecnologías trabajás?', a: 'React, Next.js y TypeScript en el frontend; Supabase, Node.js, Express y MongoDB en el backend. Si el cliente quiere administrar su tienda por su cuenta, también trabajo con Tiendanube.' },
     { id: 'precio', q: '¿Cuánto cobrás?', a: 'Tengo tres paquetes para arrancar: landing page desde $140.000 (USD 90), tienda online en Tiendanube desde $210.000 (USD 140) y catálogo web a medida con panel, como El Sello, desde $300.000 (USD 200). El dominio va aparte y queda a tu nombre. Contame qué necesitás y te paso un presupuesto.', cta: 'Pedir presupuesto', href: 'whatsapp' },
     { id: 'contacto', q: '¿Cómo te contacto?', a: 'Por WhatsApp o por mail, con los botones de acá abajo. Contame tu idea y lo charlamos.', cta: 'Abrir WhatsApp', href: 'whatsapp' },
   ],
   en: [
     { id: 'que', q: 'What do you do?', a: 'I’m a full-stack developer trained at Henry. I build websites for local businesses, online stores and custom tools that keep day-to-day work organized.' },
     { id: 'ecom', q: 'Show me an online store', a: 'Check out El Sello: a web catalog for a bookshop in Quilmes. Customers build their list and send it on WhatsApp, and the shop manages products from its own admin panel. React and TypeScript on the front; Supabase on the back.', cta: 'See the El Sello case study', href: '/proyectos/sello' },
-    { id: 'stack', q: 'What’s your stack?', a: 'React and JavaScript on the frontend; Node.js, Express and MongoDB on the backend. When a client wants to run their store on their own, I also work with Tiendanube.' },
+    { id: 'stack', q: 'What’s your stack?', a: 'React, Next.js and TypeScript on the frontend; Supabase, Node.js, Express and MongoDB on the backend. When a client wants to run their store on their own, I also work with Tiendanube.' },
     { id: 'precio', q: 'What are your rates?', a: 'I have three starter packages: a landing page from USD 90 (ARS 140,000), a Tiendanube online store from USD 140 (ARS 210,000) and a custom web catalog with an admin panel, like El Sello, from USD 200 (ARS 300,000). The domain is paid separately and stays in your name. Tell me what you need and I’ll send a quote.', cta: 'Get a quote', href: 'whatsapp' },
     { id: 'contacto', q: 'How can I reach you?', a: 'WhatsApp or email, using the buttons below. Tell me your idea and let’s talk.', cta: 'Open WhatsApp', href: 'whatsapp' },
   ],

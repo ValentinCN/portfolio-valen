@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Avatar3D } from './Avatar3D'
-import { Icon, ICONS, Txt } from './Header'
+import { Face, Icon, ICONS, Txt } from './Header'
 import { PROJECTS, SKILLS, contactLinks, projectName } from '../data'
 import { discover } from '../secrets'
 
@@ -239,19 +239,28 @@ function ScreenPanel({ t, lang }) {
 }
 
 const NOTE_COLORS = ['#F2B661', '#7CC4FF', '#7FD9A0', '#F29BC0']
+const NOTE_TILTS = [-2, 1.5, -1]
+
+// Post-its de skills pegados en el corcho: se usan en el zoom de la pizarra y en la sección Skills
+export function SkillNotes({ lang }) {
+  return (
+    <div className="board-notes">
+      {SKILLS.map((g, i) => (
+        <div className="note" key={i} style={{ '--note': NOTE_COLORS[i % NOTE_COLORS.length], '--tilt': `${NOTE_TILTS[i % NOTE_TILTS.length]}deg` }}>
+          <span className="note-title">{typeof g.group === 'string' ? g.group : g.group[lang]}</span>
+          <ul>{g.items.map((s) => <li key={s}>{s}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function BoardPanel({ t, lang }) {
   const z = t.zoom
   return (
     <div className="board">
       <h3 className="board-title">{z.boardTitle}</h3>
-      <div className="board-notes">
-        {SKILLS.map((g, i) => (
-          <div className="note" key={i} style={{ '--note': NOTE_COLORS[i % NOTE_COLORS.length], '--tilt': `${[-2, 1.5, -1][i % 3]}deg` }}>
-            <span className="note-title">{typeof g.group === 'string' ? g.group : g.group[lang]}</span>
-            <ul>{g.items.map((s) => <li key={s}>{s}</li>)}</ul>
-          </div>
-        ))}
-      </div>
+      <SkillNotes lang={lang} />
     </div>
   )
 }
@@ -269,7 +278,7 @@ function PhonePanel({ t }) {
     <div className="phone">
       <div className="phone-notch" aria-hidden="true" />
       <div className="phone-head">
-        <div className="chat-dot" aria-hidden="true">V</div>
+        <Face />
         <div>
           <strong>{z.phoneTitle}</strong>
           <span>{z.phoneSub}</span>

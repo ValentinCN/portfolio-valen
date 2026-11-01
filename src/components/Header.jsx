@@ -47,6 +47,15 @@ export function frameLabel(p, t) {
   return p.soon?.demo ? t.frameDev : t.frameMock
 }
 
+// La cara del personaje 3D (foto del busto) en un círculo: avatar del chat y del panel de contacto
+export function Face({ small, talking }) {
+  return (
+    <span className={`chat-dot face${small ? ' sm' : ''}${talking ? ' talking' : ''}`} aria-hidden="true">
+      <img src="/avatar/valen-cara.webp" alt="" width="96" height="96" />
+    </span>
+  )
+}
+
 export function Icon({ d }) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
