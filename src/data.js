@@ -1,0 +1,397 @@
+// ─────────────────────────────────────────────────────────────
+//  TODO EL CONTENIDO DE LA PÁGINA ESTÁ ACÁ.
+//  Completá lo que dice [ENTRE CORCHETES] y los datos de CONTACTO.
+// ─────────────────────────────────────────────────────────────
+
+// Tus datos de contacto. Si un campo queda vacío, el botón no lleva a ningún lado.
+export const CONTACT = {
+  whatsapp: '5491122382847', // solo números con código de país (54 9 + característica sin 0 + número sin 15)
+  email: 'valentincamposnualart@gmail.com',
+  github: 'https://github.com/ValentinCN',
+  linkedin: 'https://www.linkedin.com/in/valentin-campos-nualart-2b6362206/',
+  youtube: 'https://www.youtube.com/@Fkniss0', // tu canal de música (lo abre la nota musical secreta)
+}
+
+export const contactLinks = {
+  whatsapp: CONTACT.whatsapp ? `https://wa.me/${CONTACT.whatsapp}` : '/#contacto',
+  email: CONTACT.email ? `mailto:${CONTACT.email}` : '/#contacto',
+  github: CONTACT.github || '/#contacto',
+  linkedin: CONTACT.linkedin || '/#contacto',
+  youtube: CONTACT.youtube || '',
+}
+
+// Proyectos. Cada uno tiene su tarjeta en la portada y su caso de estudio en /proyectos/<id>.
+// - image: captura de la tarjeta (ej: '/projects/el-sello.jpg'). Vacía = recuadro gris.
+// - shots: capturas del caso de estudio. "src" vacío = recuadro con el nombre de archivo sugerido.
+// - Lo que está [ENTRE CORCHETES] se ve resaltado en amarillo: completalo o borralo.
+export const PROJECTS = [
+  {
+    id: 'sello',
+    name: 'Librería El Sello',
+    image: '/projects/sello-1.jpg',
+    demo: 'https://libreria-el-sello.vercel.app/',
+    code: '',
+    year: '2026',
+    tags: ['React', 'TypeScript', 'Supabase', 'Tailwind'],
+    desc: {
+      es: 'Catálogo web para una librería de Quilmes: el cliente arma su lista y la manda por WhatsApp, y el local carga los productos desde su propio panel.',
+      en: 'Web catalog for a bookshop in Quilmes: customers build their list and send it on WhatsApp, and the shop manages products from its own admin panel.',
+    },
+    say: {
+      es: 'El Sello lo armé de punta a punta para una librería real de mi zona. En vez de carrito, la lista va directo a WhatsApp: “Sin carritos. Con personas.”',
+      en: 'I built El Sello end to end for a real bookshop near me. Instead of a cart, the list goes straight to WhatsApp: “No carts. With people.”',
+    },
+    role: { es: 'Diseño y desarrollo, de punta a punta', en: 'Design and development, end to end' },
+    kind: { es: 'Catálogo web con panel de administración', en: 'Web catalog with admin panel' },
+    problem: {
+      es: 'Librería El Sello, en Quilmes Centro, ya vende online con Tiendanube, con carrito y pago. Quise probar otro modelo: que el cliente arme su lista (por ejemplo, la del colegio), la mande por WhatsApp y una persona del local le confirme stock y precio. Lo hice por mi cuenta como proyecto de portfolio, con los productos, las reseñas y la dirección reales del local.',
+      en: 'Librería El Sello, in downtown Quilmes, already sells online through Tiendanube, with a cart and checkout. I wanted to try a different model: customers build their list (the school supply list, for example), send it on WhatsApp and someone at the shop confirms stock and price. I built it on my own as a portfolio project, using the shop’s real products, reviews and address.',
+    },
+    solution: {
+      es: 'Un catálogo con categorías y buscador que arma solo el mensaje de WhatsApp con los productos y las cantidades, más un panel privado para cargar productos, fotos y stock. React 19 con TypeScript, Vite y Tailwind CSS v4; Supabase para la base de datos, el login y las fotos, con las reglas de seguridad en la base y sin servidor propio.',
+      en: 'A catalog with categories and search that writes the WhatsApp message with the products and quantities, plus a private panel to manage products, photos and stock. React 19 with TypeScript, Vite and Tailwind CSS v4; Supabase for the database, login and photos, with security rules in the database and no custom server.',
+    },
+    features: {
+      es: ['Buscador que ignora tildes y guarda la búsqueda en el link', 'Lista de productos que se manda armada por WhatsApp', 'Productos agotados visibles, con botón para consultar', 'Panel de administración: alta, edición y archivo de productos, con fotos comprimidas en el navegador', 'Exportación de suscriptores para abrir en Excel'],
+      en: ['Search that ignores accents and keeps the query in the link', 'Product list sent ready-made on WhatsApp', 'Out-of-stock products stay visible, with an “ask” button', 'Admin panel: create, edit and archive products, with photos compressed in the browser', 'Subscriber export that opens cleanly in Excel'],
+    },
+    result: {
+      es: 'Está publicada y en el celular saca 92 de rendimiento, 100 de accesibilidad y 100 de buenas prácticas en Lighthouse. Hasta que el local la apruebe, no aparece en Google.',
+      en: 'It’s live, and on mobile it scores 92 for performance, 100 for accessibility and 100 for best practices in Lighthouse. It stays hidden from Google until the shop approves it.',
+    },
+    shots: [
+      { src: '/projects/sello-1.jpg', file: 'sello-1.jpg', caption: { es: 'Inicio', en: 'Home' } },
+      { src: '/projects/sello-2.jpg', file: 'sello-2.jpg', caption: { es: 'Catálogo con buscador', en: 'Catalog with search' } },
+      { src: '/projects/sello-3.jpg', file: 'sello-3.jpg', caption: { es: 'Panel de administración', en: 'Admin panel' } },
+    ],
+  },
+  {
+    id: 'vindra',
+    name: 'Vindra',
+    image: '/projects/vindra-1.jpg',
+    demo: '',
+    code: '',
+    year: '2026',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'shadcn/ui'],
+    desc: {
+      es: 'Landing page en inglés para VINDRA, la marca de mi mamá, que vende kits digitales para evaluar pilotos de tecnología logística.',
+      en: 'English landing page for VINDRA, my mom’s brand, which sells digital toolkits to evaluate logistics technology pilots.',
+    },
+    say: {
+      es: 'Vindra es la marca de mi mamá y le habla a gerentes de grandes empresas. Por eso armé un selector de roles: cada uno elige su puesto y ve qué herramientas del kit le sirven.',
+      en: 'Vindra is my mom’s brand and it speaks to managers at large companies. That’s why I built a role picker: each visitor picks their job and sees which tools in the kit they’ll use.',
+    },
+    role: { es: 'Diseño y desarrollo de la landing', en: 'Landing page design and development' },
+    kind: { es: 'Landing page de producto', en: 'Product landing page' },
+    problem: {
+      es: 'VINDRA, la marca de mi mamá, lanza su primer producto: un kit de 5 plantillas para evaluar pilotos de tecnología logística, desde la línea de base hasta la decisión de seguir o cortar. Le habla a equipos de supply chain, compras, finanzas y sistemas, así que necesitaba una página en inglés que transmitiera confianza a un público corporativo y llevara directo a la compra. La empresa está en Países Bajos, así que además tenía que cuidar la privacidad (GDPR).',
+      en: 'VINDRA, my mom’s brand, is launching its first product: a kit of 5 templates to evaluate logistics technology pilots, from baseline to the go/no-go decision. It speaks to supply chain, procurement, finance and IT teams, so it needed an English page that earned the trust of a corporate audience and led straight to the purchase. The company is based in the Netherlands, so it also had to respect privacy (GDPR).',
+    },
+    solution: {
+      es: 'Una landing editorial (azul marino, dorado y papel crema) construida sección por sección sobre un sistema de diseño propio, con colores, tipografías y espaciados como tokens. La tapa del kit está hecha en HTML y CSS, no es una imagen. Next.js 16 con TypeScript, Tailwind CSS v4 y componentes shadcn/ui. Las fuentes se sirven desde el propio sitio, sin Google Fonts ni servicios externos.',
+      en: 'An editorial landing page (navy, gold and cream paper) built section by section on its own design system, with colors, type and spacing as tokens. The kit cover is built in HTML and CSS, not an image. Next.js 16 with TypeScript, Tailwind CSS v4 and shadcn/ui components. Fonts are served from the site itself, with no Google Fonts or third-party services.',
+    },
+    features: {
+      es: ['Selector de roles: cada puesto ve qué herramientas del kit usa, también con el teclado', 'Tapa del kit hecha en HTML y CSS, que se adapta a cualquier pantalla', 'Sistema de diseño con tokens: colores, tipografías y espaciados en un solo lugar', 'Accesible: contraste AA, botones de 44 px y respeta “reducir movimiento”', 'Sin Google Fonts ni servicios externos, pensando en GDPR'],
+      en: ['Role picker: each role sees which tools in the kit it uses, keyboard friendly too', 'Kit cover built in HTML and CSS that adapts to any screen', 'Design system with tokens: colors, type and spacing in one place', 'Accessible: AA contrast, 44 px touch targets and respects “reduce motion”', 'No Google Fonts or third-party services, with GDPR in mind'],
+    },
+    result: {
+      es: 'Está en desarrollo: ya están la portada, la sección del problema y el selector de roles, con la compra conectada a Gumroad. Faltan las preguntas frecuentes y el cierre para publicarla.',
+      en: 'It’s in progress: the hero, the problem section and the role picker are done, with checkout connected to Gumroad. The FAQ and the closing section are left before it goes live.',
+    },
+    shots: [
+      { src: '/projects/vindra-1.jpg', file: 'vindra-1.jpg', caption: { es: 'Portada con la tapa del kit', en: 'Hero with the kit cover' } },
+      { src: '/projects/vindra-2.jpg', file: 'vindra-2.jpg', caption: { es: 'Selector de roles', en: 'Role picker' } },
+    ],
+  },
+  {
+    id: 'name',
+    name: { es: 'Tienda de polvo de ñame', en: 'Yam powder online store' },
+    image: '',
+    demo: '',
+    code: '',
+    year: '2026',
+    tags: ['Tiendanube', 'Diseño'],
+    desc: {
+      es: 'Tienda online en Tiendanube para un emprendimiento familiar.',
+      en: 'Tiendanube online store for a family business.',
+    },
+    say: {
+      es: 'Para un emprendimiento que quería vender online y administrar la tienda por su cuenta.',
+      en: 'For a small business that wanted to sell online and run the store on its own.',
+    },
+    role: { es: 'Diseño y armado de la tienda', en: 'Store design and setup' },
+    kind: { es: 'Tienda online', en: 'Online store' },
+    problem: {
+      es: 'Un emprendimiento familiar de polvo de ñame quería vender online. Quienes lo manejan no son técnicos, así que necesitaban poder cargar productos y precios sin depender de nadie.',
+      en: 'A family business selling yam powder wanted to sell online. The owners aren’t technical, so they needed to update products and prices without depending on anyone.',
+    },
+    solution: {
+      es: 'Elegí Tiendanube para que la tienda sea autoadministrable, y me encargué de la estructura, el diseño y la configuración.',
+      en: 'I chose Tiendanube so the store is self-managed, and took care of the structure, design and setup.',
+    },
+    features: {
+      es: ['Tienda que los dueños administran solos', 'Estructura y diseño de la tienda'],
+      en: ['Store the owners run on their own', 'Store structure and design'],
+    },
+    result: {
+      es: 'La muestro como ejemplo de cómo diseño y armo una tienda en Tiendanube.',
+      en: 'I show it as an example of how I design and set up a Tiendanube store.',
+    },
+    shots: [
+      { src: '', file: 'name-1.jpg', caption: { es: 'Portada de la tienda', en: 'Store home' } },
+      { src: '', file: 'name-2.jpg', caption: { es: 'Producto', en: 'Product page' } },
+    ],
+  },
+]
+
+// Nombre del proyecto en el idioma elegido (puede ser texto o { es, en }).
+export const projectName = (p, lang) => (typeof p.name === 'string' ? p.name : p.name[lang])
+
+export const SKILLS = [
+  { group: 'Frontend', items: ['React', 'JavaScript', 'HTML', 'CSS'] },
+  { group: 'Backend', items: ['Node.js', 'Express', 'MongoDB'] },
+  { group: { es: 'Otros', en: 'Other' }, items: ['Tiendanube', 'Git / GitHub', 'Scrum'] },
+]
+
+// Textos de la interfaz en los dos idiomas.
+export const T = {
+  es: {
+    nav: { desk: 'Escritorio', projects: 'Proyectos', skills: 'Skills', contact: 'Contacto', fast: 'Modo rápido →' },
+    eyebrow: 'Full-stack developer · Quilmes, AR',
+    heroTitle: 'Hago webs que venden y sistemas que ordenan.',
+    heroSub: 'Tiendas online, webs para comercios y herramientas a medida, con React, Node y MongoDB.',
+    heroCta1: 'Pasá a mi escritorio',
+    heroCta2: 'Preguntame algo',
+    heroNote: 'Disponible para proyectos freelance · Español / English',
+    heroBubble: '¡Hola! Soy Valen. Tocame y te saludo de nuevo.',
+    loading: 'Cargando avatar…',
+    deskLabel: '02 · Mi escritorio',
+    deskTitle: 'Pasá, tocá lo que quieras',
+    deskSub: 'Tocá un objeto y entrás en él: el monitor muestra mis proyectos, la pizarra mis skills, el celu mi contacto y el cuadro quién soy.',
+    secrets: {
+      title: 'Secretos',
+      counter: (n, total) => `Encontraste ${n} de ${total} secretos`,
+      found: '¡Secreto encontrado!',
+      allTitle: '¡Los encontraste todos!',
+      allText: 'Sos un detective. Escribime y contame que llegaste hasta acá.',
+      allCta: 'Contarle a Valen por WhatsApp →',
+      reset: 'Empezar de nuevo',
+      listen: 'Escuchar mi música →',
+      items: {
+        planta: { name: 'La planta', hint: 'Algo en el escritorio necesita agua.', msg: '🌱 ¡La regaste! Crece como un buen proyecto: de a poco y con cuidado.' },
+        taza: { name: 'La taza', hint: 'Ningún dev arranca el día sin su bebida.', msg: '☕ Café cargado. (Bueno, a veces es mate.)' },
+        konami: { name: 'Código Konami', hint: 'Un clásico de los videojuegos: ↑ ↑ ↓ ↓ ← → ← → B A. En el celu, deslizá el dedo en ese orden.', msg: '🎮 ¡Código Konami! Sos de los míos.' },
+        avatar: { name: 'Cinco saludos', hint: 'Al personaje de la portada le gusta saludar… mucho.', msg: '👋 ¡Cinco saludos seguidos! Ya somos amigos.' },
+        idioma: { name: 'Bilingüe', hint: 'Probá ver la página en el otro idioma.', msg: '🌎 ¡Bilingüe! Trabajo en español y en inglés.' },
+        musica: { name: 'La nota musical', hint: 'En mi escritorio también suena algo. Mirá bien la pared.', msg: '🎵 ¡También hago música! Te abrí mi canal de YouTube.' },
+      },
+    },
+    loader: {
+      title: 'Compilando a Valen…',
+      skip: 'Saltar',
+      steps: ['Instalando dependencias', 'Cargando proyectos', 'Cebando el mate', 'Listo para trabajar'],
+    },
+    zoom: {
+      back: '← Volver al escritorio',
+      hint: 'Esc para volver',
+      all: 'Ver todos los proyectos ↓',
+      screenPath: 'valen@portfolio:~/proyectos',
+      open: 'Abrir caso →',
+      boardTitle: 'Lo que uso todos los días',
+      phoneTitle: 'Contactos',
+      phoneSub: 'Respondo rápido, en español o inglés.',
+      frameCaption: 'Valentín · Quilmes, AR',
+    },
+    desk: {
+      none: '¡Bienvenido! Tocá algo de mi escritorio.',
+      projects: 'En el monitor están mis proyectos.',
+      skills: 'En la pizarra anoto lo que uso todos los días.',
+      contact: '¿Me escribís? El celu está prendido.',
+      about: 'Ese cuadro soy yo. Te cuento un poco.',
+    },
+    hot: { projects: 'Proyectos', skills: 'Skills', contact: 'Contacto', about: 'Sobre mí' },
+    projLabel: '03 · Proyectos',
+    projTitle: 'Cosas que construí',
+    projSub: 'Cada proyecto con el problema que resolvió y cómo lo hice.',
+    guideIdle: 'Pasá el mouse por un proyecto y te cuento cómo lo hice.',
+    guide: 'Tu guía',
+    demo: 'Ver demo →',
+    code: 'Código',
+    shot: 'CAPTURA',
+    skillsLabel: '04 · La pizarra',
+    aboutLabel: 'El cuadro',
+    aboutTitle: 'Sobre mí',
+    aboutText:
+      'Soy Valentín, desarrollador full-stack de Quilmes. Me formé en Henry y hoy armo webs para comercios, tiendas online y herramientas que ordenan el trabajo administrativo.',
+    facts: [
+      ['BASE', 'Quilmes, AR'],
+      ['FORMACIÓN', 'Henry · Full-stack'],
+      ['IDIOMAS', 'Español · English'],
+      ['MODALIDAD', 'Freelance remoto'],
+    ],
+    chatLabel: '05 · Hablemos',
+    chatTitle: 'Preguntame lo que quieras',
+    chatName: 'Preguntale a Valen',
+    chatStatus: 'Respuestas al instante · ES / EN',
+    reset: 'Empezar de nuevo',
+    pick: 'Elegí una pregunta',
+    greet: '¡Hola! Soy Valen. Elegí una pregunta de abajo y te cuento.',
+    typing: 'Valen está escribiendo…',
+    direct: '¿Preferís escribirme directo?',
+    top: 'Volver arriba ↑',
+    seeCase: 'Ver caso de estudio →',
+    cs: {
+      back: '← Todos los proyectos',
+      label: 'Caso de estudio',
+      role: 'ROL',
+      year: 'AÑO',
+      kind: 'TIPO',
+      stack: 'Stack',
+      problem: 'El problema',
+      solution: 'La solución',
+      features: 'Qué hace',
+      shots: 'Capturas',
+      result: 'Resultado',
+      soon: 'Pronto',
+      guide: 'Te lo cuento yo',
+      prev: '← Anterior',
+      next: 'Siguiente →',
+      ctaTitle: '¿Querés algo así para tu negocio?',
+      ctaText: 'Contame tu idea y te paso un presupuesto sin compromiso.',
+      ctaBtn: 'Escribime por WhatsApp',
+      notFound: 'No encontré ese proyecto.',
+      shotHint: 'Guardá la captura en public/projects/',
+    },
+    notFound: 'Esta página no existe.',
+    home: 'Ir al inicio',
+  },
+  en: {
+    nav: { desk: 'Desk', projects: 'Projects', skills: 'Skills', contact: 'Contact', fast: 'Quick view →' },
+    eyebrow: 'Full-stack developer · Buenos Aires, AR',
+    heroTitle: 'I build websites that sell and tools that keep business organized.',
+    heroSub: 'Online stores, websites for local businesses and custom tools, built with React, Node and MongoDB.',
+    heroCta1: 'Step into my desk',
+    heroCta2: 'Ask me anything',
+    heroNote: 'Available for freelance work · Spanish / English',
+    heroBubble: 'Hi! I’m Valen. Tap me and I’ll wave again.',
+    loading: 'Loading avatar…',
+    deskLabel: '02 · My desk',
+    deskTitle: 'Come in, click around',
+    deskSub: 'Click an object to step into it: the monitor shows my projects, the whiteboard my skills, the phone my contact and the frame who I am.',
+    secrets: {
+      title: 'Secrets',
+      counter: (n, total) => `You found ${n} of ${total} secrets`,
+      found: 'Secret found!',
+      allTitle: 'You found them all!',
+      allText: 'Nice detective work. Message me and tell me you made it this far.',
+      allCta: 'Tell Valen on WhatsApp →',
+      reset: 'Start over',
+      listen: 'Listen to my music →',
+      items: {
+        planta: { name: 'The plant', hint: 'Something on the desk needs water.', msg: '🌱 You watered it! It grows like a good project: slowly and with care.' },
+        taza: { name: 'The mug', hint: 'No dev starts the day without their drink.', msg: '☕ Coffee loaded. (Well, sometimes it’s mate.)' },
+        konami: { name: 'Konami code', hint: 'A video game classic: ↑ ↑ ↓ ↓ ← → ← → B A. On a phone, swipe in that order.', msg: '🎮 Konami code! You’re one of us.' },
+        avatar: { name: 'Five waves', hint: 'The character at the top loves to wave… a lot.', msg: '👋 Five waves in a row! We’re friends now.' },
+        idioma: { name: 'Bilingual', hint: 'Try the page in the other language.', msg: '🌎 Bilingual! I work in Spanish and English.' },
+        musica: { name: 'The music note', hint: 'Something is playing on my desk too. Look closely at the wall.', msg: '🎵 I make music too! I opened my YouTube channel for you.' },
+      },
+    },
+    loader: {
+      title: 'Compiling Valen…',
+      skip: 'Skip',
+      steps: ['Installing dependencies', 'Loading projects', 'Brewing mate', 'Ready to work'],
+    },
+    zoom: {
+      back: '← Back to the desk',
+      hint: 'Esc to go back',
+      all: 'See all projects ↓',
+      screenPath: 'valen@portfolio:~/projects',
+      open: 'Open case →',
+      boardTitle: 'What I use every day',
+      phoneTitle: 'Contacts',
+      phoneSub: 'I reply fast, in Spanish or English.',
+      frameCaption: 'Valentín · Quilmes, AR',
+    },
+    desk: {
+      none: 'Welcome! Click anything on my desk.',
+      projects: 'My projects live on the monitor.',
+      skills: 'I write down my everyday tools on the whiteboard.',
+      contact: 'Want to message me? My phone is on.',
+      about: 'That frame is me. Let me tell you a bit.',
+    },
+    hot: { projects: 'Projects', skills: 'Skills', contact: 'Contact', about: 'About me' },
+    projLabel: '03 · Projects',
+    projTitle: 'Things I’ve built',
+    projSub: 'Each project with the problem it solved and how I built it.',
+    guideIdle: 'Hover a project and I’ll tell you how I built it.',
+    guide: 'Your guide',
+    demo: 'Live demo →',
+    code: 'Code',
+    shot: 'SCREENSHOT',
+    skillsLabel: '04 · The whiteboard',
+    aboutLabel: 'The frame',
+    aboutTitle: 'About me',
+    aboutText:
+      'I’m Valentín, a full-stack developer from Quilmes, Argentina. I trained at Henry and today I build websites for local businesses, online stores and tools that keep admin work organized.',
+    facts: [
+      ['BASE', 'Quilmes, AR'],
+      ['TRAINING', 'Henry · Full-stack'],
+      ['LANGUAGES', 'Spanish · English'],
+      ['WORK', 'Remote freelance'],
+    ],
+    chatLabel: '05 · Let’s talk',
+    chatTitle: 'Ask me anything',
+    chatName: 'Ask Valen',
+    chatStatus: 'Instant answers · ES / EN',
+    reset: 'Start over',
+    pick: 'Pick a question',
+    greet: 'Hi! I’m Valen. Pick a question below and I’ll tell you.',
+    typing: 'Valen is typing…',
+    direct: 'Rather message me directly?',
+    top: 'Back to top ↑',
+    seeCase: 'Read the case study →',
+    cs: {
+      back: '← All projects',
+      label: 'Case study',
+      role: 'ROLE',
+      year: 'YEAR',
+      kind: 'TYPE',
+      stack: 'Stack',
+      problem: 'The problem',
+      solution: 'The solution',
+      features: 'What it does',
+      shots: 'Screenshots',
+      result: 'Outcome',
+      soon: 'Soon',
+      guide: 'Let me tell you',
+      prev: '← Previous',
+      next: 'Next →',
+      ctaTitle: 'Want something like this for your business?',
+      ctaText: 'Tell me your idea and I’ll send you a free quote.',
+      ctaBtn: 'Message me on WhatsApp',
+      notFound: 'I couldn’t find that project.',
+      shotHint: 'Save the screenshot in public/projects/',
+    },
+    notFound: 'This page doesn’t exist.',
+    home: 'Go home',
+  },
+}
+
+// Preguntas y respuestas del chat. "cta" muestra un botón; "href" es a dónde lleva.
+export const QA = {
+  es: [
+    { id: 'que', q: '¿Qué hacés?', a: 'Soy desarrollador full-stack, formado en Henry. Hago webs para comercios, tiendas online y herramientas a medida para ordenar el trabajo de todos los días.' },
+    { id: 'ecom', q: 'Mostrame un e-commerce', a: 'Mirá El Sello: un catálogo web para una librería de Quilmes. El cliente arma su lista y la manda por WhatsApp, y el local carga los productos desde su propio panel. React y TypeScript adelante; Supabase atrás.', cta: 'Ver el caso El Sello', href: '/proyectos/sello' },
+    { id: 'stack', q: '¿Con qué tecnologías trabajás?', a: 'React y JavaScript en el frontend; Node.js, Express y MongoDB en el backend. Si el cliente quiere administrar su tienda por su cuenta, también trabajo con Tiendanube.' },
+    { id: 'precio', q: '¿Cuánto cobrás?', a: 'Tengo tres paquetes para arrancar: landing page desde $140.000 (USD 90), tienda online en Tiendanube desde $210.000 (USD 140) y catálogo web a medida con panel, como El Sello, desde $300.000 (USD 200). El dominio va aparte y queda a tu nombre. Contame qué necesitás y te paso un presupuesto.', cta: 'Pedir presupuesto', href: 'whatsapp' },
+    { id: 'contacto', q: '¿Cómo te contacto?', a: 'Por WhatsApp o por mail, con los botones de acá abajo. Contame tu idea y lo charlamos.', cta: 'Abrir WhatsApp', href: 'whatsapp' },
+  ],
+  en: [
+    { id: 'que', q: 'What do you do?', a: 'I’m a full-stack developer trained at Henry. I build websites for local businesses, online stores and custom tools that keep day-to-day work organized.' },
+    { id: 'ecom', q: 'Show me an online store', a: 'Check out El Sello: a web catalog for a bookshop in Quilmes. Customers build their list and send it on WhatsApp, and the shop manages products from its own admin panel. React and TypeScript on the front; Supabase on the back.', cta: 'See the El Sello case study', href: '/proyectos/sello' },
+    { id: 'stack', q: 'What’s your stack?', a: 'React and JavaScript on the frontend; Node.js, Express and MongoDB on the backend. When a client wants to run their store on their own, I also work with Tiendanube.' },
+    { id: 'precio', q: 'What are your rates?', a: 'I have three starter packages: a landing page from USD 90 (ARS 140,000), a Tiendanube online store from USD 140 (ARS 210,000) and a custom web catalog with an admin panel, like El Sello, from USD 200 (ARS 300,000). The domain is paid separately and stays in your name. Tell me what you need and I’ll send a quote.', cta: 'Get a quote', href: 'whatsapp' },
+    { id: 'contacto', q: 'How can I reach you?', a: 'WhatsApp or email, using the buttons below. Tell me your idea and let’s talk.', cta: 'Open WhatsApp', href: 'whatsapp' },
+  ],
+}

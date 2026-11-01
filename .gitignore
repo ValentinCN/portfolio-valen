@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+
+# Respaldos y archivos viejos (no se publican)
+_to_delete
+
+# Variables de entorno
+.env
+.env.*
