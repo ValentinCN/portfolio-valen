@@ -149,6 +149,114 @@ export const PROJECTS = [
 // Nombre del proyecto en el idioma elegido (puede ser texto o { es, en }).
 export const projectName = (p, lang) => (typeof p.name === 'string' ? p.name : p.name[lang])
 
+// Planes (sección "Planes" de la portada y respuesta "¿Cuánto cobrás?" del chat).
+// Precios "desde", vigentes a noviembre 2026. En español se muestran en pesos y en inglés en dólares.
+// Los USD se calcularon a ≈ ARS 1.500 por dólar (redondeados); si cambia el dólar, actualizá los dos valores.
+// - say: lo que dice el guía 3D cuando pasás el mouse por el ticket.
+// - note: post-it pegado al ticket que lleva a un caso de estudio.
+export const PLANS = [
+  {
+    id: 'presencia',
+    name: { es: 'Presencia', en: 'Presence' },
+    priceArs: 120000,
+    priceUsd: 80,
+    for: {
+      es: 'Para que te encuentren en Google y te escriban.',
+      en: 'So people find you on Google and message you.',
+    },
+    items: {
+      es: ['Web de una página con tus servicios y horarios', 'Ubicación con mapa para que lleguen fácil', 'Fotos del local y reseñas de clientes', 'Botón de WhatsApp siempre a mano', 'Que aparezcas en Google en tu zona', '1 ronda de ajustes incluida'],
+      en: ['One-page website with your services and hours', 'Location with a map so people get there easily', 'Photos of your place and customer reviews', 'WhatsApp button always within reach', 'Show up on Google in your area', '1 round of changes included'],
+    },
+    say: {
+      es: 'Si hoy solo tenés Instagram, arrancá por acá: te encuentran en Google y te escriben directo al WhatsApp.',
+      en: 'If all you have today is Instagram, start here: people find you on Google and message you straight on WhatsApp.',
+    },
+  },
+  {
+    id: 'catalogo',
+    name: { es: 'Catálogo', en: 'Catalog' },
+    priceArs: 250000,
+    priceUsd: 165,
+    for: {
+      es: 'Para mostrar tus productos y recibir pedidos armados.',
+      en: 'To show your products and get ready-made orders.',
+    },
+    items: {
+      es: ['Todo lo de Presencia', 'Hasta 30 productos con fotos y precios', 'Buscador y filtros para encontrar rápido', 'El cliente arma su pedido y te lo manda por WhatsApp'],
+      en: ['Everything in Presence', 'Up to 30 products with photos and prices', 'Search and filters to find things fast', 'Customers build their order and send it to you on WhatsApp'],
+    },
+    say: {
+      es: 'Es lo que armé en El Sello: tus clientes hacen la lista y te llega por WhatsApp. Sin carritos, con personas.',
+      en: 'It’s what I built for El Sello: customers make their list and it reaches you on WhatsApp. No carts, with people.',
+    },
+    note: { href: '/proyectos/sello', color: '#f2b661', label: { es: 'Como El Sello →', en: 'Like El Sello →' } },
+  },
+  {
+    id: 'autogestionable',
+    name: { es: 'Autogestionable', en: 'Self-managed' },
+    priceArs: 600000,
+    priceUsd: 400,
+    for: {
+      es: 'Para vender online y manejar todo vos desde el celular.',
+      en: 'To sell online and run everything yourself from your phone.',
+    },
+    items: {
+      es: ['Todo lo de Catálogo', 'Panel para cargar tus productos desde el celular', 'Cobrás con Mercado Pago', 'Envíos con precio según la zona', 'Te llega un mail con cada pedido', 'Copias de seguridad de tus datos'],
+      en: ['Everything in Catalog', 'Admin panel to add your products from your phone', 'Get paid with Mercado Pago', 'Shipping priced by area', 'An email for every order', 'Backups of your data'],
+    },
+    say: {
+      es: 'Para cuando querés vender solo: cobrás online y cambiás precios o fotos desde el celu, sin tener que llamarme.',
+      en: 'For when you want to sell on your own: you get paid online and change prices or photos from your phone, no need to call me.',
+    },
+  },
+  {
+    id: 'plataforma',
+    name: { es: 'Tienda en plataforma', en: 'Platform store' },
+    priceArs: 400000,
+    priceUsd: 265,
+    plus: {
+      es: '+ plan mensual de Tiendanube (lo pagás vos)',
+      en: '+ monthly Tiendanube plan (paid by you)',
+    },
+    for: {
+      es: 'Para tener tu tienda en Tiendanube lista para vender.',
+      en: 'To get your Tiendanube store ready to sell.',
+    },
+    items: {
+      es: ['Diseño con tu logo y tus colores', 'Hasta 50 productos cargados', 'Pagos online', 'Envíos con correos', 'Páginas de quiénes somos, envíos y contacto', 'Tu dominio conectado', 'Te enseño a manejarla'],
+      en: ['Design with your logo and colors', 'Up to 50 products loaded', 'Online payments', 'Shipping with couriers', 'About, shipping and contact pages', 'Your domain connected', 'I teach you how to run it'],
+    },
+    say: {
+      es: 'Si preferís Tiendanube, te la dejo armada con tu marca y te enseño a usarla.',
+      en: 'If you’d rather use Tiendanube, I set it up with your brand and teach you how to use it.',
+    },
+  },
+]
+
+// Extras chicos, debajo de los tickets (mismo criterio de precios que PLANS).
+export const PLAN_EXTRAS = [
+  { id: 'revision', name: { es: 'Revisión de una web existente', en: 'Review of an existing website' }, priceArs: 60000, priceUsd: 40 },
+  { id: 'mantenimiento', name: { es: 'Mantenimiento', en: 'Maintenance' }, priceArs: 25000, priceUsd: 17, monthly: true },
+]
+
+// Precio en el idioma elegido: pesos en español, dólares en inglés.
+export const planPrice = (p, lang) => (lang === 'es' ? `$${p.priceArs.toLocaleString('es-AR')}` : `USD ${p.priceUsd.toLocaleString('en-US')}`)
+
+// Link de WhatsApp con el mensaje ya escrito ("me interesa el plan …").
+export const planWhatsApp = (p, lang) => {
+  if (!CONTACT.whatsapp) return '/#contacto'
+  const msg = lang === 'es' ? `Hola Valen, me interesa el plan ${p.name.es}` : `Hi Valen, I'm interested in the ${p.name.en} plan`
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`
+}
+
+// Respuesta del chat a "¿Cuánto cobrás?", armada con los mismos precios de PLANS.
+const priceOf = (id, lang) => planPrice(PLANS.find((p) => p.id === id), lang)
+const priceAnswer = (lang) =>
+  lang === 'es'
+    ? `Tengo cuatro planes, con precios desde: Presencia (web de una página) ${priceOf('presencia', 'es')}, Catálogo con pedidos por WhatsApp ${priceOf('catalogo', 'es')}, Autogestionable con panel y Mercado Pago ${priceOf('autogestionable', 'es')} y Tienda en Tiendanube ${priceOf('plataforma', 'es')} más el plan mensual de Tiendanube. Se paga 50% para arrancar y 50% contra entrega, y el dominio queda a tu nombre.`
+    : `I have four plans, with starting prices: Presence (one-page website) ${priceOf('presencia', 'en')}, Catalog with WhatsApp orders ${priceOf('catalogo', 'en')}, Self-managed with an admin panel and Mercado Pago ${priceOf('autogestionable', 'en')} and a Tiendanube store ${priceOf('plataforma', 'en')} plus the monthly Tiendanube plan. You pay 50% upfront and 50% on delivery, and the domain stays in your name.`
+
 export const SKILLS = [
   { group: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML / CSS'] },
   { group: 'Backend', items: ['Supabase', 'Node.js', 'Express', 'MongoDB'] },
@@ -158,7 +266,7 @@ export const SKILLS = [
 // Textos de la interfaz en los dos idiomas.
 export const T = {
   es: {
-    nav: { desk: 'Escritorio', projects: 'Proyectos', skills: 'Skills', contact: 'Contacto', fast: 'Modo rápido →' },
+    nav: { desk: 'Escritorio', projects: 'Proyectos', plans: 'Planes', skills: 'Skills', contact: 'Contacto', fast: 'Modo rápido →' },
     eyebrow: 'Full-stack developer · Quilmes, AR',
     heroTitle: 'Hago webs que venden y sistemas que ordenan.',
     heroSub: 'Tiendas online, webs para comercios y herramientas a medida, con React, Next.js y Supabase.',
@@ -222,7 +330,24 @@ export const T = {
     shot: 'CAPTURA',
     frameDev: 'en desarrollo',
     frameMock: 'maqueta',
-    skillsLabel: '04 · La pizarra',
+    plans: {
+      label: '04 · Planes',
+      title: 'Cuánto sale',
+      sub: 'Cada ticket dice qué incluye y desde cuánto sale. ¿No sabés cuál te conviene? Escribime y lo vemos juntos.',
+      idle: 'Pasá el mouse por un ticket y te cuento para quién es.',
+      shop: 'VALEN.DEV · QUILMES',
+      ticket: 'TICKET N°',
+      date: 'NOV 2026',
+      total: 'TOTAL',
+      from: 'desde',
+      buy: 'Lo quiero',
+      buyLabel: (name) => `Lo quiero: pedir el plan ${name} por WhatsApp`,
+      thanks: '*** GRACIAS POR SU VISITA ***',
+      extras: 'Extras',
+      perMonth: 'por mes',
+      fine: 'Precios desde, vigentes a noviembre 2026. 50% para arrancar y 50% contra entrega. El dominio y las cuentas quedan a tu nombre.',
+    },
+    skillsLabel: '05 · La pizarra',
     aboutLabel: 'El cuadro',
     aboutTitle: 'Sobre mí',
     aboutText:
@@ -233,7 +358,7 @@ export const T = {
       ['IDIOMAS', 'Español · English'],
       ['MODALIDAD', 'Freelance remoto'],
     ],
-    chatLabel: '05 · Hablemos',
+    chatLabel: '06 · Hablemos',
     chatTitle: 'Preguntame lo que quieras',
     chatName: 'Preguntale a Valen',
     chatStatus: 'Respuestas al instante · ES / EN',
@@ -270,7 +395,7 @@ export const T = {
     home: 'Ir al inicio',
   },
   en: {
-    nav: { desk: 'Desk', projects: 'Projects', skills: 'Skills', contact: 'Contact', fast: 'Quick view →' },
+    nav: { desk: 'Desk', projects: 'Projects', plans: 'Plans', skills: 'Skills', contact: 'Contact', fast: 'Quick view →' },
     eyebrow: 'Full-stack developer · Buenos Aires, AR',
     heroTitle: 'I build websites that sell and tools that keep business organized.',
     heroSub: 'Online stores, websites for local businesses and custom tools, built with React, Next.js and Supabase.',
@@ -334,7 +459,24 @@ export const T = {
     shot: 'SCREENSHOT',
     frameDev: 'in progress',
     frameMock: 'mockup',
-    skillsLabel: '04 · The whiteboard',
+    plans: {
+      label: '04 · Plans',
+      title: 'What it costs',
+      sub: 'Each ticket shows what’s included and the starting price. Not sure which one fits? Message me and we’ll figure it out.',
+      idle: 'Hover a ticket and I’ll tell you who it’s for.',
+      shop: 'VALEN.DEV · QUILMES',
+      ticket: 'TICKET NO.',
+      date: 'NOV 2026',
+      total: 'TOTAL',
+      from: 'from',
+      buy: 'I want this',
+      buyLabel: (name) => `I want this: ask for the ${name} plan on WhatsApp`,
+      thanks: '*** THANK YOU FOR VISITING ***',
+      extras: 'Extras',
+      perMonth: 'per month',
+      fine: 'Starting prices in US dollars, valid as of November 2026. 50% upfront and 50% on delivery. The domain and accounts stay in your name.',
+    },
+    skillsLabel: '05 · The whiteboard',
     aboutLabel: 'The frame',
     aboutTitle: 'About me',
     aboutText:
@@ -345,7 +487,7 @@ export const T = {
       ['LANGUAGES', 'Spanish · English'],
       ['WORK', 'Remote freelance'],
     ],
-    chatLabel: '05 · Let’s talk',
+    chatLabel: '06 · Let’s talk',
     chatTitle: 'Ask me anything',
     chatName: 'Ask Valen',
     chatStatus: 'Instant answers · ES / EN',
@@ -389,14 +531,14 @@ export const QA = {
     { id: 'que', q: '¿Qué hacés?', a: 'Soy desarrollador full-stack, formado en Henry. Hago webs para comercios, tiendas online y herramientas a medida para ordenar el trabajo de todos los días.' },
     { id: 'ecom', q: 'Mostrame un e-commerce', a: 'Mirá El Sello: un catálogo web para una librería de Quilmes. El cliente arma su lista y la manda por WhatsApp, y el local carga los productos desde su propio panel. React y TypeScript adelante; Supabase atrás.', cta: 'Ver el caso El Sello', href: '/proyectos/sello' },
     { id: 'stack', q: '¿Con qué tecnologías trabajás?', a: 'React, Next.js y TypeScript en el frontend; Supabase, Node.js, Express y MongoDB en el backend. Si el cliente quiere administrar su tienda por su cuenta, también trabajo con Tiendanube.' },
-    { id: 'precio', q: '¿Cuánto cobrás?', a: 'Tengo tres paquetes para arrancar: landing page desde $140.000 (USD 90), tienda online en Tiendanube desde $210.000 (USD 140) y catálogo web a medida con panel, como El Sello, desde $300.000 (USD 200). El dominio va aparte y queda a tu nombre. Contame qué necesitás y te paso un presupuesto.', cta: 'Pedir presupuesto', href: 'whatsapp' },
+    { id: 'precio', q: '¿Cuánto cobrás?', a: priceAnswer('es'), cta: 'Ver los planes', href: '/#planes' },
     { id: 'contacto', q: '¿Cómo te contacto?', a: 'Por WhatsApp o por mail, con los botones de acá abajo. Contame tu idea y lo charlamos.', cta: 'Abrir WhatsApp', href: 'whatsapp' },
   ],
   en: [
     { id: 'que', q: 'What do you do?', a: 'I’m a full-stack developer trained at Henry. I build websites for local businesses, online stores and custom tools that keep day-to-day work organized.' },
     { id: 'ecom', q: 'Show me an online store', a: 'Check out El Sello: a web catalog for a bookshop in Quilmes. Customers build their list and send it on WhatsApp, and the shop manages products from its own admin panel. React and TypeScript on the front; Supabase on the back.', cta: 'See the El Sello case study', href: '/proyectos/sello' },
     { id: 'stack', q: 'What’s your stack?', a: 'React, Next.js and TypeScript on the frontend; Supabase, Node.js, Express and MongoDB on the backend. When a client wants to run their store on their own, I also work with Tiendanube.' },
-    { id: 'precio', q: 'What are your rates?', a: 'I have three starter packages: a landing page from USD 90 (ARS 140,000), a Tiendanube online store from USD 140 (ARS 210,000) and a custom web catalog with an admin panel, like El Sello, from USD 200 (ARS 300,000). The domain is paid separately and stays in your name. Tell me what you need and I’ll send a quote.', cta: 'Get a quote', href: 'whatsapp' },
+    { id: 'precio', q: 'What are your rates?', a: priceAnswer('en'), cta: 'See the plans', href: '/#planes' },
     { id: 'contacto', q: 'How can I reach you?', a: 'WhatsApp or email, using the buttons below. Tell me your idea and let’s talk.', cta: 'Open WhatsApp', href: 'whatsapp' },
   ],
 }

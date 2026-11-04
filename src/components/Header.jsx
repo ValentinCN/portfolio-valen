@@ -8,6 +8,7 @@ export function Header({ t, lang, setLang }) {
         <nav aria-label="Principal" className="nav">
           <a href="/#escritorio">{t.nav.desk}</a>
           <a href="/#proyectos">{t.nav.projects}</a>
+          <a href="/#planes">{t.nav.plans}</a>
           <a href="/#skills">{t.nav.skills}</a>
           <a href="/#contacto">{t.nav.contact}</a>
           <div className="lang" role="group" aria-label="Idioma / Language">

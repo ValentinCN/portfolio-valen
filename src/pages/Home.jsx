@@ -3,6 +3,7 @@ import { Avatar3D } from '../components/Avatar3D'
 import { discover } from '../secrets'
 import { DeskScene, SkillNotes } from '../components/DeskScene'
 import { Chat } from '../components/Chat'
+import { Plans } from '../components/Plans'
 import { PROJECTS, SKILLS, contactLinks, projectName } from '../data'
 import { Txt, Icon, ICONS, BrowserBar, frameLabel } from '../components/Header'
 
@@ -148,8 +149,11 @@ export function Home({ t, lang }) {
         </div>
       </section>
 
-      {/* 04 · SKILLS + SOBRE MÍ */}
-      <section id="skills" className="band">
+      {/* 04 · PLANES */}
+      <Plans t={t} lang={lang} />
+
+      {/* 05 · SKILLS + SOBRE MÍ */}
+      <section id="skills">
         <div className="wrap section two-col">
           {/* La pizarra: las skills como post-its en el mismo corcho del escritorio */}
           <div className="panel panel-plain">
@@ -178,32 +182,34 @@ export function Home({ t, lang }) {
         </div>
       </section>
 
-      {/* 05 · CONTACTO / CHAT */}
-      <section id="contacto" className="wrap section">
-        <div className="section-head">
-          <div>
-            <div className="eyebrow warm">{t.chatLabel}</div>
-            <h2>{t.chatTitle}</h2>
+      {/* 06 · CONTACTO / CHAT */}
+      <section id="contacto" className="band">
+        <div className="wrap section">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow warm">{t.chatLabel}</div>
+              <h2>{t.chatTitle}</h2>
+            </div>
           </div>
-        </div>
-        <div className="chat-row">
-          <Chat t={t} lang={lang} />
-          {/* Contacto directo al lado del chat (abajo en el celular) */}
-          <aside className="direct">
-            <span className="muted">{t.direct}</span>
-            <a className="btn-warm" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
-              <Icon d={ICONS.whatsapp} />WhatsApp
-            </a>
-            <a className="btn-ghost" href={contactLinks.email}>
-              <Icon d={ICONS.email} />Email
-            </a>
-            <a className="btn-ghost" href={contactLinks.github} target="_blank" rel="noreferrer">
-              <Icon d={ICONS.code} />GitHub
-            </a>
-            <a className="btn-ghost" href={contactLinks.linkedin} target="_blank" rel="noreferrer">
-              <Icon d={ICONS.user} />LinkedIn
-            </a>
-          </aside>
+          <div className="chat-row">
+            <Chat t={t} lang={lang} />
+            {/* Contacto directo al lado del chat (abajo en el celular) */}
+            <aside className="direct">
+              <span className="muted">{t.direct}</span>
+              <a className="btn-warm" href={contactLinks.whatsapp} target="_blank" rel="noreferrer">
+                <Icon d={ICONS.whatsapp} />WhatsApp
+              </a>
+              <a className="btn-ghost" href={contactLinks.email}>
+                <Icon d={ICONS.email} />Email
+              </a>
+              <a className="btn-ghost" href={contactLinks.github} target="_blank" rel="noreferrer">
+                <Icon d={ICONS.code} />GitHub
+              </a>
+              <a className="btn-ghost" href={contactLinks.linkedin} target="_blank" rel="noreferrer">
+                <Icon d={ICONS.user} />LinkedIn
+              </a>
+            </aside>
+          </div>
         </div>
       </section>
     </main>
